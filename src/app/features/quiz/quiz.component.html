@@ -1,0 +1,86 @@
+<div class="quiz-container">
+	<div class="quiz-content">
+		<!-- Прогресс-бар -->
+		<div class="progress-section">
+			<div class="progress-info">
+				<span class="question-counter">
+					Вопрос {{ currentQuestionIndex() + 1 }} из {{ questions().length }}
+				</span>
+			</div>
+			<div class="progress-bar-wrapper">
+				<div class="progress-segments">
+					@for (status of questionStatuses(); track $index) {
+						<div
+							class="progress-segment"
+							[class.correct]="status === true"
+							[class.incorrect]="status === false"
+							[class.current]="$index === currentQuestionIndex() && status === null"
+						></div>
+					}
+				</div>
+			</div>
+		</div>
+
+		<!-- Карточка вопроса -->
+		@if (currentQuestion(); as question) {
+			<div class="question-card">
+				<div class="question-header">
+					<span class="section-badge">{{ question.sectionTitle }}</span>
+				</div>
+				
+				<h2 class="question-text">{{ question.question }}</h2>
+
+				<div class="options-list">
+					@for (option of question.shuffledOptions; track option.id) {
+						<button
+							class="option-button"
+							[class.selected]="selectedAnswerId() === option.id"
+							[class.correct]="showResult() && option.id === question.correctAnswerId"
+							[class.incorrect]="showResult() && selectedAnswerId() === option.id && !isCorrect()"
+							[disabled]="showResult()"
+							(click)="onAnswerSelect(option.id)"
+						>
+							<span class="option-text">{{ option.text }}</span>
+						</button>
+					}
+				</div>
+
+				<!-- Пояснение -->
+				@if (showResult() && question.explanation) {
+					<div class="explanation" [class.correct-explanation]="isCorrect()" [class.incorrect-explanation]="!isCorrect()">
+						<div class="explanation-icon">
+							@if (isCorrect()) {
+								✓
+							} @else {
+								✗
+							}
+						</div>
+						<div class="explanation-text">
+							<p class="explanation-title">
+								@if (isCorrect()) {
+									Правильно!
+								} @else {
+									Неправильно
+								}
+							</p>
+							<p class="explanation-content">{{ question.explanation }}</p>
+						</div>
+					</div>
+				}
+
+				<!-- Кнопка действия -->
+				@if (showResult()) {
+					<div class="action-buttons">
+						<button
+							class="button button-primary next-button"
+							(click)="onNextQuestion()"
+						>
+							{{ isLastQuestion() ? 'Перейти к результатам' : 'Далее' }}
+						</button>
+					</div>
+				}
+			</div>
+		}
+	</div>
+</div>
+

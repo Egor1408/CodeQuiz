@@ -1,0 +1,21 @@
+<div 
+  class="language-card" 
+  [class.disabled]="language.disabled"
+  [style.--accent-color]="language.color"
+  [style.cursor]="language.disabled ? 'not-allowed' : 'pointer'"
+>
+  <div class="card-content">
+    <div class="icon-wrapper">
+      <img 
+        [src]="language.icon" 
+        [alt]="language.name" 
+        class="language-icon"
+        (error)="onImageError($event)"
+      />
+    </div>
+    <h3 class="language-name">{{ language.name }}</h3>
+    <p class="language-description">{{ language.description }}</p>
+  </div>
+  <div class="card-overlay"></div>
+</div>
+

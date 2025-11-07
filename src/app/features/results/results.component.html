@@ -1,0 +1,61 @@
+<div class="results-container">
+	<div class="results-content">
+		@if (result(); as quizResult) {
+			<!-- Общий процент -->
+			<div class="percentage-section">
+				<div class="percentage-value">{{ quizResult.percentage }}%</div>
+				<div class="percentage-label">Правильных ответов</div>
+				<div class="percentage-details">
+					{{ quizResult.correctAnswers }} из {{ quizResult.totalQuestions }} вопросов
+				</div>
+			</div>
+
+			<!-- Статистика по темам -->
+			<div class="sections-section">
+				<h2 class="sections-title">Статистика по темам</h2>
+				<div class="sections-list">
+					@for (section of quizResult.sectionStatistics; track section.sectionId) {
+						<div class="section-card">
+							<div class="section-header">
+								<h3 class="section-title">{{ section.sectionTitle }}</h3>
+								<div class="section-percentage">{{ section.percentage }}%</div>
+							</div>
+							<div class="section-details">
+								<div class="section-stats">
+									<span class="stat-item">
+										<span class="stat-label">Правильно:</span>
+										<span class="stat-value correct">{{ section.correctAnswers }}</span>
+									</span>
+									<span class="stat-item">
+										<span class="stat-label">Неправильно:</span>
+										<span class="stat-value incorrect">{{ section.incorrectAnswers }}</span>
+									</span>
+									<span class="stat-item">
+										<span class="stat-label">Всего:</span>
+										<span class="stat-value">{{ section.totalQuestions }}</span>
+									</span>
+								</div>
+								<div class="section-progress-bar">
+									<div 
+										class="section-progress-fill"
+										[style.width.%]="section.percentage"
+									></div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+			<!-- Кнопка возврата -->
+			<div class="actions-section">
+				<button class="button button-primary" (click)="onBackToHome()">
+					Вернуться на главную
+				</button>
+			</div>
+		} @else {
+			<div class="loading-message">Загрузка результатов...</div>
+		}
+	</div>
+</div>
+

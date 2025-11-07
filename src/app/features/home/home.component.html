@@ -1,0 +1,27 @@
+<div class="home-container">
+  <div class="home-content">
+    <div class="hero-section">
+      <h1 class="hero-title">Выберите язык программирования</h1>
+      <p class="hero-subtitle">Проверьте свои знания и улучшите навыки</p>
+    </div>
+
+    <div class="languages-grid">
+      @for (language of languages; track language.id) {
+        <app-language-card 
+          [language]="language"
+          (click)="onLanguageSelect(language.id, language.disabled)"
+        />
+      }
+    </div>
+  </div>
+</div>
+
+@if (selectedLanguage()) {
+  <app-quiz-config-modal
+    [language]="selectedLanguage()!"
+    [quizData]="quizData()"
+    (close)="onModalClose()"
+    (start)="onQuizStart($event)"
+  />
+}
+

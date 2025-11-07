@@ -1,0 +1,72 @@
+<div class="modal-overlay" (click)="onClose()">
+	<div class="modal-content" (click)="$event.stopPropagation()">
+		<div class="modal-header">
+			<h2 class="modal-title">{{ languageName() }}</h2>
+			<button class="close-button" (click)="onClose()" aria-label="Закрыть">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+
+		<div class="modal-body">
+			<!-- Выбор количества вопросов -->
+			<div class="config-section">
+				<h3 class="section-title">Количество вопросов</h3>
+				<div class="radio-group">
+					@for (count of questionCountOptions; track count) {
+						<label class="radio-label">
+							<input
+								type="radio"
+								name="questionCount"
+								[value]="count"
+								[ngModel]="selectedQuestionCount"
+								(ngModelChange)="selectedQuestionCount = $event === 'all' ? 'all' : +$event"
+								class="radio-input"
+							/>
+							<span class="radio-custom"></span>
+							<span class="radio-text">{{ count === 'all' ? 'Все' : count }}</span>
+						</label>
+					}
+				</div>
+			</div>
+
+			<!-- Выбор тем -->
+			<div class="config-section">
+				<h3 class="section-title">Выбор тем</h3>
+				<div class="checkbox-group">
+					<label class="checkbox-label select-all">
+						<input
+							type="checkbox"
+							[checked]="selectAllSections()"
+							(change)="onSelectAllChange($any($event.target).checked)"
+							class="checkbox-input"
+						/>
+						<span class="checkbox-custom"></span>
+						<span class="checkbox-text">Все темы</span>
+					</label>
+					
+					@for (section of sections(); track section.id) {
+						<label class="checkbox-label">
+							<input
+								type="checkbox"
+								[checked]="selectedSections().has(section.id)"
+								(change)="onSectionToggle(section.id, $any($event.target).checked)"
+								class="checkbox-input"
+							/>
+							<span class="checkbox-custom"></span>
+							<span class="checkbox-text">{{ section.title }}</span>
+						</label>
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button class="button button-secondary" (click)="onClose()">Отмена</button>
+			<button class="button button-primary" (click)="onStart()">Старт</button>
+		</div>
+	</div>
+</div>
+

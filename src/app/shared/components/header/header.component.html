@@ -1,0 +1,29 @@
+<header class="header">
+  <div class="header-container">
+    <a routerLink="/" class="logo">
+      <h1>CodeQuiz</h1>
+    </a>
+    
+    <nav class="nav">
+      <a routerLink="/" class="nav-link">Главная</a>
+      <a routerLink="/profile" class="nav-link">Профиль</a>
+    </nav>
+
+    <div class="theme-selector">
+      <label for="theme-select" class="theme-label">Тема:</label>
+      <select 
+        id="theme-select"
+        class="theme-select"
+        [ngModel]="themeService.currentTheme()"
+        (ngModelChange)="onThemeChange($event)"
+      >
+        @for (theme of themes; track theme.value) {
+          <option [value]="theme.value">
+            {{ theme.icon }} {{ theme.label }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+</header>
+

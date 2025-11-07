@@ -1,0 +1,393 @@
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(4px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	padding: 1rem;
+	animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.modal-content {
+	background: var(--card-bg);
+	border-radius: 1rem;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	max-width: 600px;
+	width: 100%;
+	max-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	animation: slideUp 0.3s ease;
+	overflow: hidden;
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+	margin: 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text-primary);
+}
+
+.close-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	color: var(--text-secondary);
+	transition: color 0.2s ease;
+	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		color: var(--text-primary);
+		background: var(--hover-bg);
+	}
+}
+
+.modal-body {
+	padding: 1.5rem;
+	overflow-y: auto;
+	flex: 1;
+}
+
+.config-section {
+	margin-bottom: 2rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.section-title {
+	margin: 0 0 1rem 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.radio-group {
+	display: flex;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.radio-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+	border: 2px solid var(--border-color);
+	border-radius: 0.75rem;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	background: var(--input-bg);
+	flex: 1;
+	min-width: 100px;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--primary-color);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		z-index: 0;
+	}
+
+	&:hover {
+		border-color: var(--primary-color);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+		&::before {
+			opacity: 0.05;
+		}
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+}
+
+.radio-input {
+	display: none;
+}
+
+.radio-custom {
+	width: 22px;
+	height: 22px;
+	border: 2px solid var(--border-color);
+	border-radius: 50%;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	flex-shrink: 0;
+	z-index: 1;
+	background: var(--card-bg);
+}
+
+.radio-input:checked + .radio-custom {
+	border-color: var(--primary-color);
+	background: var(--primary-color);
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary-color) 20%, transparent);
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 8px;
+		height: 8px;
+		background: white;
+		border-radius: 50%;
+		animation: radioCheck 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+}
+
+@keyframes radioCheck {
+	from {
+		transform: translate(-50%, -50%) scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 1;
+	}
+}
+
+.radio-input:checked ~ .radio-text {
+	color: var(--primary-color);
+	font-weight: 600;
+	z-index: 1;
+	position: relative;
+}
+
+.radio-label:has(.radio-input:checked) {
+	border-color: var(--primary-color);
+	background: color-mix(in srgb, var(--primary-color) 12%, var(--input-bg));
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--primary-color) 25%, transparent);
+
+	&::before {
+		opacity: 0.1;
+	}
+}
+
+.radio-text {
+	font-weight: 500;
+	color: var(--text-primary);
+	user-select: none;
+	z-index: 1;
+	position: relative;
+	transition: color 0.3s ease;
+}
+
+.checkbox-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.checkbox-label {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	cursor: pointer;
+	padding: 0.875rem 1rem;
+	border-radius: 0.625rem;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border: 1px solid transparent;
+
+	&:hover {
+		background: var(--hover-bg);
+		border-color: var(--border-color);
+		transform: translateX(4px);
+	}
+
+	&.select-all {
+		font-weight: 600;
+		padding: 1rem;
+		border-bottom: 2px solid var(--border-color);
+		margin-bottom: 0.75rem;
+		padding-bottom: 1rem;
+		background: color-mix(in srgb, var(--primary-color) 5%, var(--input-bg));
+
+		&:hover {
+			background: color-mix(in srgb, var(--primary-color) 8%, var(--input-bg));
+			border-color: var(--primary-color);
+		}
+	}
+}
+
+.checkbox-input {
+	display: none;
+}
+
+.checkbox-custom {
+	width: 22px;
+	height: 22px;
+	border: 2px solid var(--border-color);
+	border-radius: 6px;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	flex-shrink: 0;
+	background: var(--card-bg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+	border-color: var(--primary-color);
+	background: var(--primary-color);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -60%) rotate(45deg);
+		width: 5px;
+		height: 10px;
+		border: solid white;
+		border-width: 0 2.5px 2.5px 0;
+		animation: checkboxCheck 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+}
+
+@keyframes checkboxCheck {
+	0% {
+		transform: translate(-50%, -60%) rotate(45deg) scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: translate(-50%, -60%) rotate(45deg) scale(1.2);
+	}
+	100% {
+		transform: translate(-50%, -60%) rotate(45deg) scale(1);
+		opacity: 1;
+	}
+}
+
+.checkbox-label:has(.checkbox-input:checked) {
+	background: color-mix(in srgb, var(--primary-color) 8%, var(--hover-bg));
+	border-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+
+	.checkbox-text {
+		color: var(--primary-color);
+		font-weight: 500;
+	}
+}
+
+.checkbox-text {
+	color: var(--text-primary);
+	user-select: none;
+	transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.modal-footer {
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
+	padding: 1.5rem;
+	border-top: 1px solid var(--border-color);
+}
+
+.button {
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.button-primary {
+	background: var(--primary-color);
+	color: white;
+
+	&:hover:not(:disabled) {
+		background: var(--primary-hover);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+
+	&:active:not(:disabled) {
+		transform: translateY(0);
+	}
+}
+
+.button-secondary {
+	background: var(--input-bg);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+
+	&:hover:not(:disabled) {
+		background: var(--hover-bg);
+		border-color: var(--border-hover);
+	}
+}
+
+@media (max-width: 768px) {
+	.modal-content {
+		max-width: 100%;
+		margin: 1rem;
+	}
+
+	.radio-group {
+		flex-direction: column;
+	}
+
+	.radio-label {
+		min-width: auto;
+	}
+}
+
