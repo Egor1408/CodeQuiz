@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "predeploy": "ng build --configuration production --base-href /CodeQuiz/",
-    "deploy": "npx angular-cli-ghpages --dir=dist/code-quiz"
+    "deploy": "npx angular-cli-ghpages --dir=dist/CodeQuiz"
   },
   "prettier": {
     "printWidth": 100,

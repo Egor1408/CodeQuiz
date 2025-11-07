@@ -1,0 +1,1950 @@
+{
+"language": "typescript",
+"sections": [
+	{
+	"id": "basics",
+	"title": "Основы",
+	"questions": [
+		{
+		"id": "basics-1",
+		"question": "Что такое TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Новый язык программирования, не связанный с JavaScript"
+			},
+			{
+			"id": "b",
+			"text": "Надмножество JavaScript с добавлением статической типизации"
+			},
+			{
+			"id": "c",
+			"text": "Библиотека для работы с типами в JavaScript"
+			},
+			{
+			"id": "d",
+			"text": "Фреймворк для создания веб-приложений"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "TypeScript - это надмножество JavaScript, которое добавляет статическую типизацию и компилируется в обычный JavaScript. Весь валидный JavaScript код является валидным TypeScript кодом."
+		},
+		{
+		"id": "basics-2",
+		"question": "Какие примитивные типы доступны в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "string, number, boolean"
+			},
+			{
+			"id": "b",
+			"text": "string, number, boolean, null, undefined, symbol, bigint"
+			},
+			{
+			"id": "c",
+			"text": "string, number, boolean, object"
+			},
+			{
+			"id": "d",
+			"text": "string, number, boolean, array"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "TypeScript поддерживает все примитивные типы JavaScript: string, number, boolean, null, undefined, symbol (ES6) и bigint (ES2020)."
+		},
+		{
+		"id": "basics-3",
+		"question": "Что выведет TypeScript компилятор для кода: let x: number = 10; x = '20';?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Код скомпилируется успешно"
+			},
+			{
+			"id": "b",
+			"text": "Ошибка компиляции: Type 'string' is not assignable to type 'number'"
+			},
+			{
+			"id": "c",
+			"text": "Предупреждение, но код скомпилируется"
+			},
+			{
+			"id": "d",
+			"text": "Ошибка времени выполнения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "TypeScript проверяет типы на этапе компиляции. Попытка присвоить строку переменной типа number вызовет ошибку компиляции, так как типы не совместимы."
+		},
+		{
+		"id": "basics-4",
+		"question": "Что такое type annotation (аннотация типа) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Комментарий в коде"
+			},
+			{
+			"id": "b",
+			"text": "Явное указание типа переменной, параметра или возвращаемого значения"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Type annotation - это явное указание типа через синтаксис :type. Например: let age: number = 25; или function greet(name: string): string {}."
+		},
+		{
+		"id": "basics-5",
+		"question": "Что такое type inference (вывод типов) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Автоматическое определение типа компилятором на основе значения"
+			},
+			{
+			"id": "b",
+			"text": "Ручное указание типов"
+			},
+			{
+			"id": "c",
+			"text": "Преобразование типов"
+			},
+			{
+			"id": "d",
+			"text": "Удаление типов"
+			}
+		],
+		"correctAnswerId": "a",
+		"explanation": "Type inference позволяет TypeScript автоматически определять тип переменной на основе присвоенного значения. Например: let x = 10; - TypeScript выведет тип number."
+		},
+		{
+		"id": "basics-6",
+		"question": "Что такое union type (объединенный тип) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который может быть только одним значением"
+			},
+			{
+			"id": "b",
+			"text": "Тип, который может быть одним из нескольких типов, обозначается через |"
+			},
+			{
+			"id": "c",
+			"text": "Тип для работы с массивами"
+			},
+			{
+			"id": "d",
+			"text": "Тип для работы с объектами"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Union type позволяет переменной иметь один из нескольких типов. Синтаксис: let value: string | number; означает, что value может быть либо string, либо number."
+		},
+		{
+		"id": "basics-7",
+		"question": "Что такое literal type (литеральный тип) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который может быть любым значением"
+			},
+			{
+			"id": "b",
+			"text": "Тип, который может быть только конкретным значением, например 'hello' или 42"
+			},
+			{
+			"id": "c",
+			"text": "Тип для строк"
+			},
+			{
+			"id": "d",
+			"text": "Тип для чисел"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Literal type - это тип, который может быть только конкретным значением. Например: let direction: 'up' | 'down' | 'left' | 'right'; или let count: 42;"
+		},
+		{
+		"id": "basics-8",
+		"question": "Что такое optional property (опциональное свойство) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Свойство, которое обязательно должно быть"
+			},
+			{
+			"id": "b",
+			"text": "Свойство, которое может отсутствовать, обозначается через ?"
+			},
+			{
+			"id": "c",
+			"text": "Свойство только для чтения"
+			},
+			{
+			"id": "d",
+			"text": "Свойство с типом any"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Optional property - это свойство объекта, которое может отсутствовать. Обозначается через ?: interface User { name: string; age?: number; } - age может отсутствовать."
+		},
+		{
+		"id": "basics-9",
+		"question": "Что такое readonly property (свойство только для чтения) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Свойство, которое можно изменять"
+			},
+			{
+			"id": "b",
+			"text": "Свойство, которое можно установить только при инициализации и нельзя изменить после"
+			},
+			{
+			"id": "c",
+			"text": "Свойство, которое может отсутствовать"
+			},
+			{
+			"id": "d",
+			"text": "Свойство с типом any"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "readonly property можно установить только при создании объекта и нельзя изменить после. Синтаксис: interface Point { readonly x: number; readonly y: number; }"
+		},
+		{
+		"id": "basics-10",
+		"question": "Что такое type alias (псевдоним типа) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания переменных"
+			},
+			{
+			"id": "b",
+			"text": "Создание нового имени для типа через ключевое слово type"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Type alias позволяет создать новое имя для типа. Синтаксис: type ID = string | number; или type Point = { x: number; y: number; };"
+		},
+		{
+		"id": "basics-11",
+		"question": "Как объявить функцию с типизацией параметров и возвращаемого значения?",
+		"options": [
+			{
+			"id": "a",
+			"text": "function add(a, b) { return a + b; }"
+			},
+			{
+			"id": "b",
+			"text": "function add(a: number, b: number): number { return a + b; }"
+			},
+			{
+			"id": "c",
+			"text": "function add(a: number, b: number) { return a + b; }"
+			},
+			{
+			"id": "d",
+			"text": "function add: number(a, b) { return a + b; }"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "В TypeScript функции типизируются так: function name(param: type): returnType {}. Параметры и возвращаемое значение должны иметь явные типы."
+		},
+		{
+		"id": "basics-12",
+		"question": "Что такое optional parameter (опциональный параметр) в функции?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Параметр, который обязательно должен быть передан"
+			},
+			{
+			"id": "b",
+			"text": "Параметр, который может быть не передан, обозначается через ?"
+			},
+			{
+			"id": "c",
+			"text": "Параметр с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Параметр только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Optional parameter может быть не передан при вызове функции. Синтаксис: function greet(name: string, age?: number) {} - age можно не передавать."
+		},
+		{
+		"id": "basics-13",
+		"question": "Что такое default parameter (параметр по умолчанию) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Параметр, который нельзя изменить"
+			},
+			{
+			"id": "b",
+			"text": "Параметр со значением по умолчанию, используется если значение не передано"
+			},
+			{
+			"id": "c",
+			"text": "Параметр с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Параметр только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Default parameter имеет значение по умолчанию. Синтаксис: function greet(name: string, greeting: string = 'Hello') {} - если greeting не передан, используется 'Hello'."
+		},
+		{
+		"id": "basics-14",
+		"question": "Что такое rest parameters (остаточные параметры) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Параметры, которые нельзя изменить"
+			},
+			{
+			"id": "b",
+			"text": "Параметры, которые собирают оставшиеся аргументы в массив, обозначаются через ..."
+			},
+			{
+			"id": "c",
+			"text": "Параметры с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Параметры только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Rest parameters собирают оставшиеся аргументы в массив. Синтаксис: function sum(...numbers: number[]): number {} - все переданные числа будут в массиве numbers."
+		},
+		{
+		"id": "basics-15",
+		"question": "Что такое arrow function (стрелочная функция) с типизацией в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "const add = (a, b) => a + b;"
+			},
+			{
+			"id": "b",
+			"text": "const add = (a: number, b: number): number => a + b;"
+			},
+			{
+			"id": "c",
+			"text": "const add: (a: number, b: number) => number = (a, b) => a + b;"
+			},
+			{
+			"id": "d",
+			"text": "Варианты b и c верны"
+			}
+		],
+		"correctAnswerId": "d",
+		"explanation": "Arrow function можно типизировать двумя способами: явно указать типы параметров и возвращаемого значения в самой функции, или указать тип функции отдельно."
+		},
+		{
+		"id": "basics-16",
+		"question": "Что такое function overload (перегрузка функций) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания нескольких функций с одинаковым именем"
+			},
+			{
+			"id": "b",
+			"text": "Определение нескольких сигнатур функции для разных типов параметров"
+			},
+			{
+			"id": "c",
+			"text": "Способ вызова функции"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Function overload позволяет определить несколько сигнатур функции для разных типов параметров. TypeScript выберет подходящую сигнатуру на основе переданных аргументов."
+		},
+		{
+		"id": "basics-17",
+		"question": "Что такое void в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип для переменных"
+			},
+			{
+			"id": "b",
+			"text": "Тип возвращаемого значения функции, которая ничего не возвращает"
+			},
+			{
+			"id": "c",
+			"text": "Тип для null"
+			},
+			{
+			"id": "d",
+			"text": "Тип для undefined"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "void используется как тип возвращаемого значения функции, которая не возвращает значение. Например: function log(message: string): void { console.log(message); }"
+		},
+		{
+		"id": "basics-18",
+		"question": "Что такое never в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип для переменных, которые никогда не изменяются"
+			},
+			{
+			"id": "b",
+			"text": "Тип, который представляет значения, которые никогда не произойдут (функции, которые никогда не возвращают значение или всегда выбрасывают ошибку)"
+			},
+			{
+			"id": "c",
+			"text": "Тип для null"
+			},
+			{
+			"id": "d",
+			"text": "Тип для undefined"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "never представляет тип значений, которые никогда не произойдут. Используется для функций, которые всегда выбрасывают ошибку или никогда не завершаются (бесконечный цикл)."
+		},
+		{
+		"id": "basics-19",
+		"question": "Что такое any в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который отключает проверку типов для переменной"
+			},
+			{
+			"id": "b",
+			"text": "Тип, который может быть любым значением, отключает проверку типов"
+			},
+			{
+			"id": "c",
+			"text": "Тип для объектов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для массивов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "any - это тип, который отключает проверку типов TypeScript. Переменная типа any может иметь любое значение и с ней можно делать что угодно без проверки типов. Следует избегать использования any."
+		},
+		{
+		"id": "basics-20",
+		"question": "Что такое unknown в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, идентичный any"
+			},
+			{
+			"id": "b",
+			"text": "Безопасная альтернатива any, требует проверки типа перед использованием"
+			},
+			{
+			"id": "c",
+			"text": "Тип для null"
+			},
+			{
+			"id": "d",
+			"text": "Тип для undefined"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "unknown - это тип-верхняя граница (top type), который безопаснее any. Переменная типа unknown может быть любым значением, но перед использованием нужно проверить или сузить тип."
+		}
+	]
+	},
+	{
+	"id": "objects",
+	"title": "Объекты",
+	"questions": [
+		{
+		"id": "objects-1",
+		"question": "Что такое interface (интерфейс) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "b",
+			"text": "Контракт, описывающий структуру объекта, его свойства и методы"
+			},
+			{
+			"id": "c",
+			"text": "Встроенная функция TypeScript"
+			},
+			{
+			"id": "d",
+			"text": "Тип данных"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Interface описывает форму объекта, определяя какие свойства и методы должны быть у объекта. Синтаксис: interface User { name: string; age: number; }"
+		},
+		{
+		"id": "objects-2",
+		"question": "В чем разница между interface и type в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Нет разницы, это одно и то же"
+			},
+			{
+			"id": "b",
+			"text": "interface можно расширять и объединять, type более гибкий для сложных типов. interface существует только на этапе компиляции"
+			},
+			{
+			"id": "c",
+			"text": "type работает быстрее"
+			},
+			{
+			"id": "d",
+			"text": "interface устарел"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "interface можно расширять (extends) и объединять (declaration merging). type более гибкий для union types, intersection types и других сложных типов. Оба существуют только на этапе компиляции."
+		},
+		{
+		"id": "objects-3",
+		"question": "Что такое index signature (индексная сигнатура) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания массивов"
+			},
+			{
+			"id": "b",
+			"text": "Способ определения типов для свойств объекта с динамическими ключами через [key: type]: valueType"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Index signature позволяет определить тип для свойств объекта с динамическими ключами. Синтаксис: interface Dictionary { [key: string]: number; } - объект с любыми строковыми ключами и числовыми значениями."
+		},
+		{
+		"id": "objects-4",
+		"question": "Что такое intersection type (пересечение типов) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который может быть одним из нескольких типов"
+			},
+			{
+			"id": "b",
+			"text": "Тип, который объединяет несколько типов в один через &"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для объектов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Intersection type объединяет несколько типов в один. Синтаксис: type A = B & C; означает, что A должен иметь все свойства и B, и C одновременно."
+		},
+		{
+		"id": "objects-5",
+		"question": "Что такое extends в interface (расширение интерфейса)?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания нового интерфейса"
+			},
+			{
+			"id": "b",
+			"text": "Наследование свойств и методов от другого интерфейса"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "extends позволяет интерфейсу наследовать свойства и методы от другого интерфейса. Синтаксис: interface Child extends Parent { additionalProp: string; }"
+		},
+		{
+		"id": "objects-6",
+		"question": "Что такое declaration merging (объединение объявлений) для interface?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ удаления интерфейсов"
+			},
+			{
+			"id": "b",
+			"text": "Автоматическое объединение нескольких объявлений интерфейса с одинаковым именем в один"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Declaration merging позволяет объявлять интерфейс несколько раз, и TypeScript автоматически объединит все объявления в один интерфейс. Это полезно для расширения библиотек."
+		},
+		{
+		"id": "objects-7",
+		"question": "Что такое mapped types (маппированные типы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания массивов"
+			},
+			{
+			"id": "b",
+			"text": "Способ создания нового типа на основе существующего, преобразуя его свойства"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Mapped types позволяют создавать новые типы на основе существующих, преобразуя их свойства. Пример: type Readonly<T> = { readonly [P in keyof T]: T[P]; }"
+		},
+		{
+		"id": "objects-8",
+		"question": "Что такое nested objects (вложенные объекты) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Объекты, которые нельзя изменить"
+			},
+			{
+			"id": "b",
+			"text": "Объекты, содержащие другие объекты в качестве свойств"
+			},
+			{
+			"id": "c",
+			"text": "Объекты с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Объекты только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Nested objects - это объекты, которые содержат другие объекты. В TypeScript это описывается через вложенные интерфейсы или типы: interface Address { street: string; city: string; } interface User { name: string; address: Address; }"
+		},
+		{
+		"id": "objects-9",
+		"question": "Что такое computed property names (вычисляемые имена свойств) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Свойства с фиксированными именами"
+			},
+			{
+			"id": "b",
+			"text": "Свойства, имена которых вычисляются динамически через выражения в квадратных скобках"
+			},
+			{
+			"id": "c",
+			"text": "Свойства только для чтения"
+			},
+			{
+			"id": "d",
+			"text": "Свойства с типом any"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Computed property names позволяют использовать выражения для имен свойств. В TypeScript это работает с типизацией: const key = 'name'; const obj = { [key]: 'John' };"
+		},
+		{
+		"id": "objects-10",
+		"question": "Что такое type guards (защитники типов) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "b",
+			"text": "Выражения, которые проверяют тип во время выполнения и сужают тип в блоке кода"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Type guards - это выражения, которые проверяют тип во время выполнения и позволяют TypeScript сузить тип. Примеры: typeof, instanceof, in, пользовательские type guards."
+		},
+		{
+		"id": "objects-11",
+		"question": "Что такое discriminated unions (размеченные объединения) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания массивов"
+			},
+			{
+			"id": "b",
+			"text": "Union типы с общим свойством-дискриминатором, позволяющим точно определить тип"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Discriminated unions используют общее свойство (дискриминатор) для различения типов в union. Пример: type Shape = { kind: 'circle'; radius: number; } | { kind: 'square'; side: number; }"
+		},
+		{
+		"id": "objects-12",
+		"question": "Что такое partial type (частичный тип) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, где все свойства обязательны"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Partial<T>, который делает все свойства типа T опциональными"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для функций"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Partial<T> - это встроенный утилитный тип, который делает все свойства типа T опциональными. type PartialUser = Partial<User>; - все свойства User становятся опциональными."
+		},
+		{
+		"id": "objects-13",
+		"question": "Что такое required type (обязательный тип) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, где все свойства опциональны"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Required<T>, который делает все опциональные свойства типа T обязательными"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для функций"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Required<T> - это встроенный утилитный тип, который делает все опциональные свойства типа T обязательными. type RequiredUser = Required<PartialUser>;"
+		},
+		{
+		"id": "objects-14",
+		"question": "Что такое pick type (выбор свойств) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который выбирает все свойства"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Pick<T, K>, который выбирает только указанные свойства K из типа T"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для функций"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Pick<T, K> - это утилитный тип, который создает новый тип, содержащий только указанные свойства K из типа T. type NameOnly = Pick<User, 'name'>;"
+		},
+		{
+		"id": "objects-15",
+		"question": "Что такое omit type (исключение свойств) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который включает все свойства"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Omit<T, K>, который создает тип без указанных свойств K из типа T"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для функций"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Omit<T, K> - это утилитный тип, который создает новый тип, исключая указанные свойства K из типа T. type UserWithoutId = Omit<User, 'id'>;"
+		},
+		{
+		"id": "objects-16",
+		"question": "Что такое record type (тип записи) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Record<K, T>, который создает объект с ключами типа K и значениями типа T"
+			},
+			{
+			"id": "c",
+			"text": "Тип для функций"
+			},
+			{
+			"id": "d",
+			"text": "Тип для примитивов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Record<K, T> - это утилитный тип, который создает объект с ключами типа K и значениями типа T. type UserMap = Record<string, User>; - объект со строковыми ключами и значениями User."
+		},
+		{
+		"id": "objects-17",
+		"question": "Что такое readonly type (тип только для чтения) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Тип, который можно изменять"
+			},
+			{
+			"id": "b",
+			"text": "Утилитный тип Readonly<T>, который делает все свойства типа T только для чтения"
+			},
+			{
+			"id": "c",
+			"text": "Тип для массивов"
+			},
+			{
+			"id": "d",
+			"text": "Тип для функций"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Readonly<T> - это утилитный тип, который делает все свойства типа T только для чтения (readonly). type ReadonlyUser = Readonly<User>; - все свойства User становятся readonly."
+		},
+		{
+		"id": "objects-18",
+		"question": "Что такое keyof operator (оператор ключей) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания ключей"
+			},
+			{
+			"id": "b",
+			"text": "Оператор, который возвращает union type всех ключей объекта"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "keyof возвращает union type всех ключей объекта. type UserKeys = keyof User; - если User имеет свойства name и age, то UserKeys будет 'name' | 'age'."
+		},
+		{
+		"id": "objects-19",
+		"question": "Что такое typeof operator (оператор типа) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Оператор, который возвращает тип значения во время выполнения"
+			},
+			{
+			"id": "b",
+			"text": "Оператор, который возвращает тип значения на этапе компиляции"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "typeof в TypeScript (не путать с JavaScript typeof) возвращает тип значения на этапе компиляции. const user = { name: 'John', age: 30 }; type UserType = typeof user; - UserType будет { name: string; age: number; }"
+		},
+		{
+		"id": "objects-20",
+		"question": "Что такое as const assertion (утверждение константы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания переменных"
+			},
+			{
+			"id": "b",
+			"text": "Утверждение, которое делает значения readonly и использует их литеральные типы вместо общих типов"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "as const делает значения readonly и использует их точные литеральные типы. const arr = [1, 2, 3] as const; - arr будет readonly [1, 2, 3] вместо number[]."
+		}
+	]
+	},
+	{
+	"id": "classes-oop",
+	"title": "Классы и ООП",
+	"questions": [
+		{
+		"id": "classes-oop-1",
+		"question": "Как объявить класс с типизацией в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "class MyClass { }"
+			},
+			{
+			"id": "b",
+			"text": "class MyClass { name: string; age: number; constructor(name: string, age: number) { this.name = name; this.age = age; } }"
+			},
+			{
+			"id": "c",
+			"text": "class MyClass(name: string, age: number) { }"
+			},
+			{
+			"id": "d",
+			"text": "Варианты a и b верны"
+			}
+		],
+		"correctAnswerId": "d",
+		"explanation": "В TypeScript классы объявляются с типизацией свойств и параметров конструктора. Можно объявить пустой класс или класс с типизированными свойствами и конструктором."
+		},
+		{
+		"id": "classes-oop-2",
+		"question": "Что такое access modifiers (модификаторы доступа) в TypeScript классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "public, private, protected - определяют видимость свойств и методов"
+			},
+			{
+			"id": "b",
+			"text": "Способ создания методов"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания свойств"
+			},
+			{
+			"id": "d",
+			"text": "Встроенные функции TypeScript"
+			}
+		],
+		"correctAnswerId": "a",
+		"explanation": "Access modifiers определяют видимость: public (доступно везде, по умолчанию), private (только внутри класса), protected (внутри класса и подклассов)."
+		},
+		{
+		"id": "classes-oop-3",
+		"question": "Что такое readonly в классах TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Свойство, которое можно изменять"
+			},
+			{
+			"id": "b",
+			"text": "Свойство, которое можно установить только в конструкторе и нельзя изменить после"
+			},
+			{
+			"id": "c",
+			"text": "Свойство с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Способ создания методов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "readonly свойство можно установить только в конструкторе или при объявлении, и нельзя изменить после. class Point { readonly x: number; readonly y: number; }"
+		},
+		{
+		"id": "classes-oop-4",
+		"question": "Что такое inheritance (наследование) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания классов"
+			},
+			{
+			"id": "b",
+			"text": "Механизм, при котором класс может наследовать свойства и методы от другого класса через extends"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Наследование позволяет классу наследовать свойства и методы от другого класса. Синтаксис: class Child extends Parent { }. Дочерний класс получает все публичные и защищенные члены родительского класса."
+		},
+		{
+		"id": "classes-oop-5",
+		"question": "Что такое method overriding (переопределение методов) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания методов"
+			},
+			{
+			"id": "b",
+			"text": "Переопределение метода родительского класса в дочернем классе с той же сигнатурой"
+			},
+			{
+			"id": "c",
+			"text": "Способ удаления методов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Method overriding позволяет дочернему классу переопределить метод родительского класса. Метод должен иметь совместимую сигнатуру. Используется ключевое слово override (опционально)."
+		},
+		{
+		"id": "classes-oop-6",
+		"question": "Что такое super в TypeScript классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Ключевое слово для вызова методов и конструктора родительского класса"
+			},
+			{
+			"id": "b",
+			"text": "Способ создания методов"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания свойств"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "a",
+		"explanation": "super используется для вызова конструктора или методов родительского класса. В конструкторе: super(...args); В методах: super.methodName();"
+		},
+		{
+		"id": "classes-oop-7",
+		"question": "Что такое abstract class (абстрактный класс) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Класс, который нельзя использовать"
+			},
+			{
+			"id": "b",
+			"text": "Класс, который нельзя инстанцировать напрямую, используется как базовый класс для наследования"
+			},
+			{
+			"id": "c",
+			"text": "Класс с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Обычный класс"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Abstract class нельзя инстанцировать напрямую (new AbstractClass() - ошибка). Он используется как базовый класс. Может содержать абстрактные методы, которые должны быть реализованы в дочерних классах."
+		},
+		{
+		"id": "classes-oop-8",
+		"question": "Что такое abstract method (абстрактный метод) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Метод, который нельзя вызвать"
+			},
+			{
+			"id": "b",
+			"text": "Метод без реализации, который должен быть реализован в дочерних классах"
+			},
+			{
+			"id": "c",
+			"text": "Метод с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Обычный метод"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Abstract method объявляется без реализации в абстрактном классе и должен быть реализован в дочерних классах. Синтаксис: abstract methodName(): returnType;"
+		},
+		{
+		"id": "classes-oop-9",
+		"question": "Что такое polymorphism (полиморфизм) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания классов"
+			},
+			{
+			"id": "b",
+			"text": "Способность объектов разных классов обрабатываться через общий интерфейс или базовый класс"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Полиморфизм позволяет обрабатывать объекты разных классов через общий интерфейс или базовый класс. Это достигается через наследование и переопределение методов."
+		},
+		{
+		"id": "classes-oop-10",
+		"question": "Что такое static property (статическое свойство) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Свойство экземпляра класса"
+			},
+			{
+			"id": "b",
+			"text": "Свойство, которое принадлежит классу, а не экземпляру, доступно через имя класса"
+			},
+			{
+			"id": "c",
+			"text": "Свойство с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Свойство только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Static property принадлежит самому классу, а не его экземплярам. Доступно через имя класса: ClassName.propertyName. Синтаксис: static propertyName: type;"
+		},
+		{
+		"id": "classes-oop-11",
+		"question": "Что такое static method (статический метод) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Метод экземпляра класса"
+			},
+			{
+			"id": "b",
+			"text": "Метод, который принадлежит классу, а не экземпляру, вызывается через имя класса"
+			},
+			{
+			"id": "c",
+			"text": "Метод с типом any"
+			},
+			{
+			"id": "d",
+			"text": "Метод только для чтения"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Static method принадлежит самому классу, а не его экземплярам. Вызывается через имя класса: ClassName.methodName(). Внутри статического метода нет доступа к this."
+		},
+		{
+		"id": "classes-oop-12",
+		"question": "Что такое getter и setter в TypeScript классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания свойств"
+			},
+			{
+			"id": "b",
+			"text": "Методы для получения и установки значений свойств с дополнительной логикой"
+			},
+			{
+			"id": "c",
+			"text": "Встроенные функции TypeScript"
+			},
+			{
+			"id": "d",
+			"text": "Способ создания методов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Getter и setter позволяют контролировать доступ к свойствам. get propertyName() { return this._property; } set propertyName(value) { this._property = value; }"
+		},
+		{
+		"id": "classes-oop-13",
+		"question": "Что такое interface implementation (реализация интерфейса) в классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания классов"
+			},
+			{
+			"id": "b",
+			"text": "Реализация классом всех свойств и методов, определенных в интерфейсе, через implements"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания объектов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Класс может реализовывать интерфейс через implements. Класс должен реализовать все свойства и методы интерфейса. Синтаксис: class MyClass implements MyInterface { }"
+		},
+		{
+		"id": "classes-oop-14",
+		"question": "Может ли класс в TypeScript наследоваться от нескольких классов?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Да, через extends Class1, Class2"
+			},
+			{
+			"id": "b",
+			"text": "Нет, TypeScript поддерживает только одиночное наследование, но можно реализовывать несколько интерфейсов"
+			},
+			{
+			"id": "c",
+			"text": "Да, но только для абстрактных классов"
+			},
+			{
+			"id": "d",
+			"text": "Да, но только для статических классов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "TypeScript поддерживает только одиночное наследование классов (один extends), но класс может реализовывать несколько интерфейсов: class MyClass extends Parent implements Interface1, Interface2 { }"
+		},
+		{
+		"id": "classes-oop-15",
+		"question": "Что такое private fields (приватные поля) с # в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания публичных полей"
+			},
+			{
+			"id": "b",
+			"text": "Приватные поля, объявленные через #, которые действительно приватны на уровне JavaScript"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания статических полей"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Private fields с # (hash names) - это действительно приватные поля на уровне JavaScript. Они недоступны вне класса даже через обход проверок TypeScript. Синтаксис: #privateField: type;"
+		},
+		{
+		"id": "classes-oop-16",
+		"question": "В чем разница между private и # (hash names) для приватных полей?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Нет разницы"
+			},
+			{
+			"id": "b",
+			"text": "private - проверка только на этапе компиляции TypeScript, # - реальная приватность на уровне JavaScript"
+			},
+			{
+			"id": "c",
+			"text": "# работает быстрее"
+			},
+			{
+			"id": "d",
+			"text": "private устарел"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "private - это проверка только на этапе компиляции TypeScript, в скомпилированном JavaScript поле все равно доступно. # создает реальную приватность на уровне JavaScript."
+		},
+		{
+		"id": "classes-oop-17",
+		"question": "Что такое constructor parameter properties (свойства параметров конструктора) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания свойств отдельно"
+			},
+			{
+			"id": "b",
+			"text": "Сокращенный синтаксис для объявления и инициализации свойств класса в параметрах конструктора"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания методов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Constructor parameter properties позволяют объявить и инициализировать свойства в параметрах конструктора. constructor(public name: string, private age: number) {} - автоматически создает this.name и this.age."
+		},
+		{
+		"id": "classes-oop-18",
+		"question": "Что такое method overloading (перегрузка методов) в TypeScript классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания нескольких методов с разными именами"
+			},
+			{
+			"id": "b",
+			"text": "Определение нескольких сигнатур метода для разных типов параметров"
+			},
+			{
+			"id": "c",
+			"text": "Способ вызова методов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Method overloading позволяет определить несколько сигнатур метода. TypeScript выберет подходящую сигнатуру на основе переданных аргументов. Реализация должна обрабатывать все варианты."
+		},
+		{
+		"id": "classes-oop-19",
+		"question": "Что такое protected в TypeScript классах?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Доступно везде, как public"
+			},
+			{
+			"id": "b",
+			"text": "Доступно внутри класса и в дочерних классах, но не снаружи"
+			},
+			{
+			"id": "c",
+			"text": "Доступно только внутри класса, как private"
+			},
+			{
+			"id": "d",
+			"text": "Способ создания методов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "protected члены доступны внутри класса и в дочерних классах (при наследовании), но не доступны снаружи класса. Это промежуточный уровень между public и private."
+		},
+		{
+		"id": "classes-oop-20",
+		"question": "Что такое readonly в классах TypeScript и как оно отличается от const?",
+		"options": [
+			{
+			"id": "a",
+			"text": "readonly и const - это одно и то же"
+			},
+			{
+			"id": "b",
+			"text": "readonly применяется к свойствам класса, const - к переменным. readonly можно установить в конструкторе"
+			},
+			{
+			"id": "c",
+			"text": "const работает быстрее"
+			},
+			{
+			"id": "d",
+			"text": "readonly устарел"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "readonly применяется к свойствам класса и может быть установлено в конструкторе или при объявлении. const применяется к переменным и должна быть инициализирована при объявлении."
+		}
+	]
+	},
+	{
+	"id": "advanced-types",
+	"title": "Продвинутые типы",
+	"questions": [
+		{
+		"id": "advanced-types-1",
+		"question": "Что такое generics (дженерики) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "b",
+			"text": "Механизм для создания переиспользуемых компонентов, работающих с разными типами через параметры типа"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Generics позволяют создавать переиспользуемые компоненты, работающие с разными типами. Синтаксис: function identity<T>(arg: T): T { return arg; } - T является параметром типа."
+		},
+		{
+		"id": "advanced-types-2",
+		"question": "Как использовать generics в функциях TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "function func(arg) { }"
+			},
+			{
+			"id": "b",
+			"text": "function func<T>(arg: T): T { return arg; } - T можно указать явно или вывести из аргументов"
+			},
+			{
+			"id": "c",
+			"text": "function func<T: any>(arg: T) { }"
+			},
+			{
+			"id": "d",
+			"text": "function func(arg: generic) { }"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Generics в функциях объявляются через <T> после имени функции. Тип можно указать явно: func<string>('hello') или вывести из аргументов: func('hello')."
+		},
+		{
+		"id": "advanced-types-3",
+		"question": "Как использовать generics в интерфейсах TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "interface MyInterface { }"
+			},
+			{
+			"id": "b",
+			"text": "interface MyInterface<T> { data: T; } - параметр типа указывается после имени интерфейса"
+			},
+			{
+			"id": "c",
+			"text": "interface MyInterface { T: any; }"
+			},
+			{
+			"id": "d",
+			"text": "interface MyInterface<T: any> { }"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Generics в интерфейсах объявляются через <T> после имени интерфейса. При использовании нужно указать тип: interface Container<T> { value: T; } const numContainer: Container<number> = { value: 10 };"
+		},
+		{
+		"id": "advanced-types-4",
+		"question": "Как использовать generics в классах TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "class MyClass { }"
+			},
+			{
+			"id": "b",
+			"text": "class MyClass<T> { private data: T; } - параметр типа указывается после имени класса"
+			},
+			{
+			"id": "c",
+			"text": "class MyClass { T: any; }"
+			},
+			{
+			"id": "d",
+			"text": "class MyClass<T: any> { }"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Generics в классах объявляются через <T> после имени класса. При создании экземпляра нужно указать тип: class Box<T> { value: T; } const box = new Box<string>();"
+		},
+		{
+		"id": "advanced-types-5",
+		"question": "Что такое generic constraints (ограничения дженериков) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ удаления типов"
+			},
+			{
+			"id": "b",
+			"text": "Ограничение параметра типа через extends, указывающее что тип должен иметь определенные свойства"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Generic constraints ограничивают параметр типа. Синтаксис: function func<T extends HasLength>(arg: T) {} - T должен иметь свойство length. Это позволяет использовать свойства ограничивающего типа."
+		},
+		{
+		"id": "advanced-types-6",
+		"question": "Что такое default type parameters (параметры типа по умолчанию) в generics?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Параметры, которые нельзя изменить"
+			},
+			{
+			"id": "b",
+			"text": "Значение типа по умолчанию для параметра типа, используется если тип не указан явно"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Default type parameters позволяют указать тип по умолчанию. Синтаксис: interface Container<T = string> { value: T; } - если тип не указан, используется string."
+		},
+		{
+		"id": "advanced-types-7",
+		"question": "Что такое utility types (утилитные типы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "b",
+			"text": "Встроенные типы для преобразования других типов, такие как Partial, Required, Pick, Omit и др."
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенные функции TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Utility types - это встроенные типы для преобразования других типов. Примеры: Partial<T>, Required<T>, Pick<T, K>, Omit<T, K>, Readonly<T>, Record<K, T> и др."
+		},
+		{
+		"id": "advanced-types-8",
+		"question": "Что делает утилитный тип Exclude<T, U>?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Исключает из типа T все типы, которые можно присвоить U"
+			},
+			{
+			"id": "b",
+			"text": "Включает в тип T все типы из U"
+			},
+			{
+			"id": "c",
+			"text": "Объединяет типы T и U"
+			},
+			{
+			"id": "d",
+			"text": "Создает пересечение типов"
+			}
+		],
+		"correctAnswerId": "a",
+		"explanation": "Exclude<T, U> исключает из union типа T все типы, которые можно присвоить U. type Result = Exclude<'a' | 'b' | 'c', 'a'>; // 'b' | 'c'"
+		},
+		{
+		"id": "advanced-types-9",
+		"question": "Что делает утилитный тип Extract<T, U>?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Исключает из типа T все типы из U"
+			},
+			{
+			"id": "b",
+			"text": "Извлекает из типа T только те типы, которые можно присвоить U"
+			},
+			{
+			"id": "c",
+			"text": "Объединяет типы T и U"
+			},
+			{
+			"id": "d",
+			"text": "Создает пересечение типов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Extract<T, U> извлекает из union типа T только те типы, которые можно присвоить U. type Result = Extract<'a' | 'b' | 'c', 'a' | 'd'>; // 'a'"
+		},
+		{
+		"id": "advanced-types-10",
+		"question": "Что делает утилитный тип NonNullable<T>?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Добавляет null и undefined к типу T"
+			},
+			{
+			"id": "b",
+			"text": "Исключает null и undefined из типа T"
+			},
+			{
+			"id": "c",
+			"text": "Объединяет типы"
+			},
+			{
+			"id": "d",
+			"text": "Создает пересечение типов"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "NonNullable<T> исключает null и undefined из типа T. type Result = NonNullable<string | null | undefined>; // string"
+		},
+		{
+		"id": "advanced-types-11",
+		"question": "Что делает утилитный тип ReturnType<T>?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Возвращает тип параметров функции"
+			},
+			{
+			"id": "b",
+			"text": "Возвращает тип возвращаемого значения функции"
+			},
+			{
+			"id": "c",
+			"text": "Возвращает тип функции"
+			},
+			{
+			"id": "d",
+			"text": "Создает новый тип функции"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "ReturnType<T> извлекает тип возвращаемого значения функции. type Func = () => string; type Result = ReturnType<Func>; // string"
+		},
+		{
+		"id": "advanced-types-12",
+		"question": "Что делает утилитный тип Parameters<T>?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Возвращает тип возвращаемого значения функции"
+			},
+			{
+			"id": "b",
+			"text": "Возвращает tuple типов параметров функции"
+			},
+			{
+			"id": "c",
+			"text": "Возвращает тип функции"
+			},
+			{
+			"id": "d",
+			"text": "Создает новый тип функции"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Parameters<T> извлекает tuple типов параметров функции. type Func = (a: string, b: number) => void; type Result = Parameters<Func>; // [string, number]"
+		},
+		{
+		"id": "advanced-types-13",
+		"question": "Что такое conditional types (условные типы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "b",
+			"text": "Типы, которые выбирают один из двух типов на основе условия через синтаксис T extends U ? X : Y"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Conditional types позволяют выбирать тип на основе условия. Синтаксис: type IsArray<T> = T extends Array<any> ? true : false; Если T расширяет Array, вернется true, иначе false."
+		},
+		{
+		"id": "advanced-types-14",
+		"question": "Что такое infer keyword (ключевое слово infer) в conditional types?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "b",
+			"text": "Ключевое слово для вывода типа из conditional type, позволяет извлечь тип из другого типа"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "infer позволяет вывести тип из conditional type. Пример: type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never; - извлекает тип возвращаемого значения функции."
+		},
+		{
+		"id": "advanced-types-15",
+		"question": "Что такое distributive conditional types (дистрибутивные условные типы)?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Условные типы, которые применяются только к одному типу"
+			},
+			{
+			"id": "b",
+			"text": "Условные типы, которые автоматически распределяются по union типам, применяя условие к каждому члену union"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Distributive conditional types автоматически распределяются по union типам. type ToArray<T> = T extends any ? T[] : never; type StrArrOrNumArr = ToArray<string | number>; // string[] | number[]"
+		},
+		{
+		"id": "advanced-types-16",
+		"question": "Что такое template literal types (типы шаблонных строк) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания строк"
+			},
+			{
+			"id": "b",
+			"text": "Типы, которые используют синтаксис шаблонных строк для создания строковых типов на основе других типов"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Template literal types позволяют создавать строковые типы через шаблонные строки. type EventName<T extends string> = `on${Capitalize<T>}`; type ClickEvent = EventName<'click'>; // 'onClick'"
+		},
+		{
+		"id": "advanced-types-17",
+		"question": "Что такое mapped types с as clause (маппированные типы с as) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ создания массивов"
+			},
+			{
+			"id": "b",
+			"text": "Mapped types, которые могут переименовывать ключи через as clause для более сложных преобразований"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Mapped types с as clause позволяют переименовывать ключи. type Getters<T> = { [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K] }; - создает методы-геттеры из свойств."
+		},
+		{
+		"id": "advanced-types-18",
+		"question": "Что такое recursive types (рекурсивные типы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Типы, которые нельзя использовать"
+			},
+			{
+			"id": "b",
+			"text": "Типы, которые ссылаются на самих себя, используются для структур данных вроде деревьев"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Recursive types ссылаются на самих себя. type TreeNode = { value: number; children?: TreeNode[]; }; - TreeNode содержит массив TreeNode, создавая рекурсивную структуру."
+		},
+		{
+		"id": "advanced-types-19",
+		"question": "Что такое branded types (брендированные типы) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Типы с брендом для маркетинга"
+			},
+			{
+			"id": "b",
+			"text": "Техника создания номинальных типов из структурных, добавляя уникальное свойство-бренд для различения одинаковых по структуре типов"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания функций"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Branded types используют уникальное свойство для различения типов с одинаковой структурой. type UserId = string & { __brand: 'UserId' }; type ProductId = string & { __brand: 'ProductId' }; - предотвращает смешивание разных ID."
+		},
+		{
+		"id": "advanced-types-20",
+		"question": "Что такое type narrowing (сужение типов) в TypeScript?",
+		"options": [
+			{
+			"id": "a",
+			"text": "Способ расширения типов"
+			},
+			{
+			"id": "b",
+			"text": "Процесс, при котором TypeScript сужает тип переменной до более конкретного типа на основе проверок (type guards, условных операторов и т.д.)"
+			},
+			{
+			"id": "c",
+			"text": "Способ создания типов"
+			},
+			{
+			"id": "d",
+			"text": "Встроенная функция TypeScript"
+			}
+		],
+		"correctAnswerId": "b",
+		"explanation": "Type narrowing позволяет TypeScript сужать тип переменной. Например, после проверки typeof value === 'string', TypeScript знает, что value - string в блоке if."
+		}
+	]
+	}
+]
+}
+

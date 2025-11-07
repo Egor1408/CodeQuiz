@@ -18,14 +18,37 @@ export class QuizConfigModalComponent implements OnInit, OnChanges {
 	@Output() close = new EventEmitter<void>();
 	@Output() start = new EventEmitter<QuizConfig>();
 
-	questionCountOptions = [3, 10, 20, 'all'] as const;
-	selectedQuestionCount: number | 'all' = 3;
+	questionCountOptions = [10, 25, 50, 'all'] as const;
+	selectedQuestionCount: number | 'all' = 10;
 	
 	sections = signal<QuestionSection[]>([]);
 	selectedSections = signal<Set<string>>(new Set());
 	selectAllSections = signal(false);
 
 	languageName = computed(() => this.language?.name || '');
+
+	// Подсчет общего количества вопросов в выбранных темах
+	totalQuestionsInSelectedSections = computed(() => {
+		const selected = this.selectedSections();
+		if (selected.size === 0) {
+			return 0;
+		}
+		
+		return this.sections()
+			.filter(section => selected.has(section.id))
+			.reduce((total, section) => total + section.questions.length, 0);
+	});
+
+	// Проверка, доступен ли вариант количества вопросов
+	isQuestionCountDisabled = computed(() => {
+		const total = this.totalQuestionsInSelectedSections();
+		return (count: number | 'all') => {
+			if (count === 'all') {
+				return false; // "Все" всегда доступно
+			}
+			return total < count;
+		};
+	});
 
 	ngOnInit(): void {
 		this.loadSections();
@@ -55,6 +78,9 @@ export class QuizConfigModalComponent implements OnInit, OnChanges {
 		} else {
 			this.selectedSections.set(new Set());
 		}
+		
+		// Обновляем выбранное количество вопросов при изменении выбора тем
+		this.updateSelectedQuestionCount();
 	}
 
 	onSectionToggle(sectionId: string, checked: boolean): void {
@@ -69,6 +95,24 @@ export class QuizConfigModalComponent implements OnInit, OnChanges {
 		// Обновляем состояние "Выбрать все" на основе текущего состояния
 		const allSelected = current.size === this.sections().length && this.sections().length > 0;
 		this.selectAllSections.set(allSelected);
+
+		// Обновляем выбранное количество вопросов при изменении выбора тем
+		this.updateSelectedQuestionCount();
+	}
+
+	private updateSelectedQuestionCount(): void {
+		const total = this.totalQuestionsInSelectedSections();
+		if (typeof this.selectedQuestionCount === 'number' && this.selectedQuestionCount > total) {
+			if (total >= 50) {
+				this.selectedQuestionCount = 50;
+			} else if (total >= 25) {
+				this.selectedQuestionCount = 25;
+			} else if (total >= 10) {
+				this.selectedQuestionCount = 10;
+			} else {
+				this.selectedQuestionCount = 'all';
+			}
+		}
 	}
 
 	onClose(): void {

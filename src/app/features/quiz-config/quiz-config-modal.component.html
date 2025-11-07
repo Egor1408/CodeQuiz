@@ -16,17 +16,24 @@
 				<h3 class="section-title">Количество вопросов</h3>
 				<div class="radio-group">
 					@for (count of questionCountOptions; track count) {
-						<label class="radio-label">
+						<label class="radio-label" [class.disabled]="isQuestionCountDisabled()(count)">
 							<input
 								type="radio"
 								name="questionCount"
 								[value]="count"
 								[ngModel]="selectedQuestionCount"
 								(ngModelChange)="selectedQuestionCount = $event === 'all' ? 'all' : +$event"
+								[disabled]="isQuestionCountDisabled()(count)"
 								class="radio-input"
 							/>
 							<span class="radio-custom"></span>
-							<span class="radio-text">{{ count === 'all' ? 'Все' : count }}</span>
+							<span class="radio-text">
+								@if (count === 'all') {
+									Все ({{ totalQuestionsInSelectedSections() }})
+								} @else {
+									{{ count }}
+								}
+							</span>
 						</label>
 					}
 				</div>

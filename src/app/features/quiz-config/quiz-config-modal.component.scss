@@ -223,6 +223,28 @@
 	transition: color 0.3s ease;
 }
 
+.radio-label.disabled,
+.radio-label:has(.radio-input:disabled) {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+
+	&:hover {
+		border-color: var(--border-color);
+		transform: none;
+		box-shadow: none;
+
+		&::before {
+			opacity: 0;
+		}
+	}
+}
+
+.radio-input:disabled + .radio-custom {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 .checkbox-group {
 	display: flex;
 	flex-direction: column;

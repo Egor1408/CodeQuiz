@@ -17,6 +17,14 @@ export const PROGRAMMING_LANGUAGES: ProgrammingLanguage[] = [
     disabled: false
   },
   {
+    id: 'typescript',
+    name: 'TypeScript',
+    icon: 'assets/images/languages/typescript.svg',
+    description: 'Надмножество JavaScript с статической типизацией',
+    color: '#3178C6',
+    disabled: false
+  },
+  {
     id: 'coming-soon',
     name: 'В разработке',
     icon: 'assets/images/languages/placeholder.svg',
